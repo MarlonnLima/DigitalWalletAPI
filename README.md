@@ -2,7 +2,7 @@
 
 Desafio feito para um teste técnico os requisitos estarão abaixo.
 
-Desafio de código Backend
+## Desafio de código Backend
 Nesse desafio serão avaliados
 Seu domínio em Back-End
 Lógica
@@ -11,7 +11,7 @@ Segurança
 Boas práticas
 Boa sorte e obrigado por participar!
 
-🚨 As regras do jogo
+## 🚨 As regras do jogo
 A API deve ser desenvolvida em Python ou C#. Recomendamos o uso do framework Django no caso do Python. Caso opte por um framework diferente, forneça uma justificativa detalhada no arquivo README.
 
 Implementar autenticação com JWT. O token deve ser informado no formato Bearer nas requisições.
@@ -24,7 +24,7 @@ Crie um arquivo README que explique como executar o projeto, e quaisquer scripts
 
 A aplicação deve possuir um script que popule o Banco de Dados inicialmente com dados fictícios para demonstração.
 
-🎁 Bônus
+## 🎁 Bônus
 Esses itens não são obrigatórios, porém desejados.
 
 Arquitetura
