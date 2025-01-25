@@ -1,6 +1,6 @@
 # DigitalWalletAPI
 
-Desafio feito para um teste técnico os requisitos estarão abaixo.
+Desafio feito para um teste técnico os requisitos cobrados estarão abaixo.
 
 ## Desafio de código Backend
 Nesse desafio serão avaliados
@@ -27,16 +27,16 @@ A aplicação deve possuir um script que popule o Banco de Dados inicialmente co
 ## 🎁 Bônus
 Esses itens não são obrigatórios, porém desejados.
 
-Arquitetura
-Testes automatizados
-Docker
-Linter
-🖥 O Desafio
+* Arquitetura
+* Testes automatizados
+* Docker
+* Linter
+## 🖥 O Desafio
 Você deve criar uma API para gerenciar carteiras digitais e transações financeiras. Essa API será utilizada por uma aplicação front-end e deve incluir as seguintes funcionalidades:
 
-Autenticação
-Criar um usuário
-Consultar saldo da carteira de um usuário
-Adicionar saldo à carteira
-Criar uma transferência entre usuários (carteiras)
-Listar transferências realizadas por um usuário, com filtro opcional por período de data
+* Autenticação
+* Criar um usuário
+* Consultar saldo da carteira de um usuário
+* Adicionar saldo à carteira
+* Criar uma transferência entre usuários (carteiras)
+* Listar transferências realizadas por um usuário, com filtro opcional por período de data
