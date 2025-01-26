@@ -1,4 +1,6 @@
-﻿using DigitalWalletAPI.Interfaces;
+﻿using DigitalWalletAPI.Domain.Entities;
+using DigitalWalletAPI.Domain.Services;
+using DigitalWalletAPI.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DigitalWalletAPI.Controllers
@@ -7,6 +9,11 @@ namespace DigitalWalletAPI.Controllers
     [Route("api/users")]
     public class UserController : ControllerBase, IBaseApiController
     {
+        private readonly UserService _userService;
+        public UserController(UserService userService)
+        {
+            _userService = userService;
+        }
 
         /// <summary>
         /// Recupera todos os usuários
@@ -27,7 +34,16 @@ namespace DigitalWalletAPI.Controllers
         [Route("{id}")]
         public IActionResult GetOne(int id)
         {
-            return Ok();
+            try
+            {
+                var user = _userService.GetById(id);
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine(ex.Message);
+                return BadRequest(ex.Message);
+            }
         }
 
         /// <summary>
