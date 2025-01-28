@@ -25,6 +25,8 @@ services:
         local-network:
             aliases:
                 - "sql" 
+    volumes:
+    - postgres_data:/var/lib/docker/volumes/a407acd131c474a6e877480094f4afd0c1486a52979ac44f41302f5523d15cf4/_data 
 
   pgadmin:
     image: dpage/pgadmin4
@@ -36,9 +38,13 @@ services:
     volumes:
       - pgadmin_data:/var/lib/pgadmin
     command: postgres sslmode=disable
-    network_mode: bridge
+    networks:
+        local-network:
 networks:
   local-network:
     driver: bridge
 volumes:
   pgadmin_data:
+  postgres_data:
+    external: true
+  
