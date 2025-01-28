@@ -13,14 +13,14 @@ namespace DigitalWalletAPI.Domain.Services
             _userRepository = userRepository;
         }
 
-        public User GetById(int Id)
+        public User GetById(int id)
         {
-            if (Id <= 0)
+            if (id <= 0)
             {
                 throw new ArgumentException("O id é inválido");
             }
 
-            User user = _userRepository.FindById(Id);
+            User user = _userRepository.FindById(id);
 
             if (user == null)
             {
@@ -80,6 +80,21 @@ namespace DigitalWalletAPI.Domain.Services
             }
 
             return result;
+        }
+
+        public void Delete(int id)
+        {
+            if (id <= 0)
+            {
+                throw new ArgumentException("O id é inválido");
+            }
+
+            int rowsAffected = _userRepository.Delete(id);
+
+            if (rowsAffected <= 0)
+            {
+                throw new NpgsqlException("Não foi possível deletar o usuário");
+            }
         }
     }
 }

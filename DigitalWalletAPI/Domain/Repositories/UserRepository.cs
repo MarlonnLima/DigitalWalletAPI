@@ -56,7 +56,7 @@ namespace DigitalWalletAPI.Domain.Repositories
                 using(var conn = _connectionFactory.CreateConnection())
                 {
                     conn.Open();
-                    List<User> users = conn.Query<User>("SELECT * FROM USERS").ToList();
+                    List<User> users = conn.Query<User>("SELECT * FROM USERS ORDER BY ID").ToList();
                     return users;
                 }
             }
@@ -86,6 +86,24 @@ namespace DigitalWalletAPI.Domain.Repositories
                 Console.WriteLine("ERROR: " + ex.Message);
             }
             return false;
+        }
+
+        public int Delete(int id)
+        {
+            try
+            {
+                using (var conn = _connectionFactory.CreateConnection())
+                {
+                    conn.Open();
+                    int rowsAffected = conn.Execute($"DELETE FROM USERS WHERE ID = @ID", new { ID = id });
+                    return rowsAffected;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR: " + ex.Message);
+            }
+            return 0;
         }
     }
 }

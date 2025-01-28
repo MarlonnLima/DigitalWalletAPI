@@ -100,7 +100,16 @@ namespace DigitalWalletAPI.Controllers
         [Route("{id}")]
         public IActionResult Delete(int id)
         {
-            return Ok();
+            try
+            {
+                _userService.Delete(id);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
