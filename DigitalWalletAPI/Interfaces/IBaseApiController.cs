@@ -4,7 +4,7 @@ namespace DigitalWalletAPI.Interfaces
 {
     public interface IBaseApiController
     {
-        public IActionResult List();
+        public IActionResult GetAll();
         public IActionResult GetOne(int id);
     }
 }
