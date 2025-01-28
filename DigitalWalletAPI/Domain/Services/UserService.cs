@@ -31,5 +31,20 @@ namespace DigitalWalletAPI.Domain.Services
                 return user;
             }
         }
+
+        public void Create(User user)
+        {
+            if (string.IsNullOrEmpty(user.Name))
+            {
+                throw new ArgumentException("O nome não foi preenchido");
+            }
+
+            int rowsAffected = _userRepository.Create(user);
+
+            if(rowsAffected <= 0)
+            {
+                throw new NpgsqlException("Não foi possível adicionar o usuário");
+            }
+        }
     }
 }

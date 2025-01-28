@@ -41,7 +41,7 @@ namespace DigitalWalletAPI.Controllers
             }
             catch (Exception ex)
             {
-                Console.Error.WriteLine(ex.Message);
+                Console.WriteLine("Error: " + ex.Message);
                 return BadRequest(ex.Message);
             }
         }
@@ -50,9 +50,18 @@ namespace DigitalWalletAPI.Controllers
         /// Cria um novo usuário
         /// </summary>
         [HttpPost]
-        public IActionResult Create()
+        public IActionResult Create([FromBody] User user)
         {
-            return Ok();
+            try
+            {
+                _userService.Create(user);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                return BadRequest(ex.Message);
+            }
         }
 
         /// <summary>

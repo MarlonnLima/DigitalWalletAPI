@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using DigitalWalletAPI.Domain.Entities;
 using DigitalWalletAPI.Infraestructure;
+using Npgsql;
 
 namespace DigitalWalletAPI.Domain.Repositories
 {
@@ -26,9 +27,27 @@ namespace DigitalWalletAPI.Domain.Repositories
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("ERROR: " + ex.Message);
             }
             return null;
+        }
+
+        public int Create(User user)
+        {
+            try
+            {
+                using (var conn = _connectionFactory.CreateConnection())
+                {
+                    conn.Open();
+                    int rowsAffected = conn.Execute($"INSERT INTO USERS (Name) VALUES (@NAME)", new { NAME = user.Name });
+                    return rowsAffected;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR: " + ex.Message);
+            }
+            return 0;
         }
     }
 }
