@@ -76,12 +76,20 @@ namespace DigitalWalletAPI.Controllers
         /// <summary>
         /// Atualiza um usuário
         /// </summary>
-        /// <param name="id">id do usuário</param>
-        [HttpPost]
-        [Route("{id}")]
-        public IActionResult Update(int id)
+        /// <param name="user">dados atualizados do usuário</param>
+        [HttpPut]
+        public IActionResult Update(User user)
         {
-            return Ok();
+            try
+            {
+                _userService.Update(user);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                return BadRequest(ex.Message);
+            }
         }
 
         /// <summary>

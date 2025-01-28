@@ -58,5 +58,28 @@ namespace DigitalWalletAPI.Domain.Services
 
             return users;
         }
+
+        public bool Update(User user)
+        {
+
+            if (string.IsNullOrEmpty(user.Name))
+            {
+                throw new ArgumentException("O nome não foi preenchido");
+            }
+
+            if (user.Id <= 0)
+            {
+                throw new ArgumentException("O id é invalido");
+            }
+
+            var result = _userRepository.Update(user);
+
+            if(result == false)
+            {
+                throw new NpgsqlException("Não foi possível atualizar o usuário");
+            }
+
+            return result;
+        }
     }
 }
