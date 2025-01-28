@@ -46,5 +46,17 @@ namespace DigitalWalletAPI.Domain.Services
                 throw new NpgsqlException("Não foi possível adicionar o usuário");
             }
         }
+
+        public List<User> GetAll()
+        {
+            var users = _userRepository.GetAll();
+
+            if(users == null)
+            {
+                throw new NpgsqlException("Não foi possível recuperar os usuários");
+            }
+
+            return users;
+        }
     }
 }

@@ -49,5 +49,23 @@ namespace DigitalWalletAPI.Domain.Repositories
             }
             return 0;
         }
+
+        public List<User> GetAll()
+        {
+            try
+            {
+                using(var conn = _connectionFactory.CreateConnection())
+                {
+                    conn.Open();
+                    List<User> users = conn.Query<User>("SELECT * FROM USERS").ToList();
+                    return users;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR: " + ex.Message);
+            }
+            return new List<User>();
+        }
     }
 }

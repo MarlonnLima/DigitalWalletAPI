@@ -45,7 +45,7 @@ namespace DigitalWalletAPI.Controllers
         /// <returns>uma lista de carteiras</returns>
         /// <exception cref="NotImplementedException"></exception>
         [HttpGet]
-        public IActionResult List()
+        public IActionResult GetAll()
         {
             throw new NotImplementedException();
         }

@@ -20,9 +20,18 @@ namespace DigitalWalletAPI.Controllers
         /// </summary>
         /// <returns>Uma lista de usuários</returns>
         [HttpGet]
-        public IActionResult List()
+        public IActionResult GetAll()
         {
-            return Ok();
+            try
+            {
+                var users = _userService.GetAll();
+                return Ok(users);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                return BadRequest(ex.Message);
+            }
         }
 
         /// <summary>
