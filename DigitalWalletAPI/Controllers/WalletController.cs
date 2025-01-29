@@ -1,3 +1,5 @@
+using DigitalWalletAPI.Domain.Entities;
+using DigitalWalletAPI.Domain.Services;
 using DigitalWalletAPI.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,11 +10,11 @@ namespace DigitalWalletAPI.Controllers
     public class WalletController : ControllerBase, IBaseApiController
     {
 
-        private readonly ILogger<WalletController> _logger;
+        private readonly WalletService _walletService;
 
-        public WalletController(ILogger<WalletController> logger)
+        public WalletController(WalletService walletService)
         {
-            _logger = logger;
+            _walletService = walletService;
         }
 
         /// <summary>
@@ -29,14 +31,23 @@ namespace DigitalWalletAPI.Controllers
         /// <summary>
         /// Recupera uma carteira
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="userId">id do usuário</param>
         /// <returns>uma carteira</returns>
         /// <exception cref="NotImplementedException"></exception>
         [HttpGet]
-        [Route("{id}")]
-        public IActionResult GetOne(int id)
+        [Route("{userId}")]
+        public IActionResult GetOne(int userId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var wallet = _walletService.GetOne(userId);
+                return Ok(wallet);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                return BadRequest(ex.Message);
+            }
         }
 
         /// <summary>

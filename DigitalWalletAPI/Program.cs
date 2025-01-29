@@ -33,6 +33,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton(sp => new DbConnectionFactory(connectionString));
 builder.Services.AddTransient<UserRepository>();
 builder.Services.AddTransient<UserService>();
+builder.Services.AddTransient<WalletRepository>();
+builder.Services.AddTransient<WalletService>();
 
 var app = builder.Build();
 
