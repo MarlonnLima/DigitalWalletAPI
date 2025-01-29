@@ -7,10 +7,12 @@ namespace DigitalWalletAPI.Domain.Services
     public class UserService
     {
         private readonly UserRepository _userRepository;
+        private readonly WalletRepository _walletRepository;
 
-        public UserService(UserRepository userRepository)
+        public UserService(UserRepository userRepository, WalletRepository walletRepository)
         {
             _userRepository = userRepository;
+            _walletRepository = walletRepository;
         }
 
         public User GetById(int id)
@@ -39,11 +41,18 @@ namespace DigitalWalletAPI.Domain.Services
                 throw new ArgumentException("O nome não foi preenchido");
             }
 
-            int rowsAffected = _userRepository.Create(user);
+            int id = _userRepository.Create(user);
 
-            if(rowsAffected <= 0)
+            if(id <= 0)
             {
                 throw new NpgsqlException("Não foi possível adicionar o usuário");
+            }
+
+            var rowsAffected = _walletRepository.Create(id);
+
+            if (rowsAffected <= 0)
+            {
+                throw new NpgsqlException("Não foi possível adicionar a carteira do usuário");
             }
         }
 

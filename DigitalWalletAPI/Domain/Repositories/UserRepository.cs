@@ -38,8 +38,8 @@ namespace DigitalWalletAPI.Domain.Repositories
                 using (var conn = _connectionFactory.CreateConnection())
                 {
                     conn.Open();
-                    int rowsAffected = conn.Execute($"INSERT INTO USERS (Name) VALUES (@NAME)", new { NAME = user.Name });
-                    return rowsAffected;
+                    int id = conn.QuerySingle<int>($"INSERT INTO USERS (Name) VALUES (@NAME) RETURNING USERS.id", new { NAME = user.Name });
+                    return id;
                 }
             }
             catch (Exception ex)
