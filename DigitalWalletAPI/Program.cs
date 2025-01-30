@@ -35,6 +35,8 @@ builder.Services.AddTransient<UserRepository>();
 builder.Services.AddTransient<UserService>();
 builder.Services.AddTransient<WalletRepository>();
 builder.Services.AddTransient<WalletService>();
+builder.Services.AddTransient<TransferRepository>();
+builder.Services.AddTransient<TransferService>();
 
 var app = builder.Build();
 
