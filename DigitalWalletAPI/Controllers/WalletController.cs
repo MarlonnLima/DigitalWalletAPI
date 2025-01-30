@@ -1,5 +1,6 @@
 using DigitalWalletAPI.Domain.Entities;
 using DigitalWalletAPI.Domain.Services;
+using DigitalWalletAPI.DTOs;
 using DigitalWalletAPI.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,12 +21,20 @@ namespace DigitalWalletAPI.Controllers
         /// <summary>
         /// Adiciona saldo a uma carteira
         /// </summary>
-        /// <exception cref="NotImplementedException"></exception>
         [HttpPost]
-        [Route("{id}/balance")]
-        public IActionResult AddBalance()
+        [Route("balance/")]
+        public IActionResult AddBalance([FromBody] AddBalanceDTO model)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _walletService.AddBalance(model);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                return BadRequest(ex.Message);
+            }
         }
 
         /// <summary>
@@ -33,7 +42,6 @@ namespace DigitalWalletAPI.Controllers
         /// </summary>
         /// <param name="userId">id do usuário</param>
         /// <returns>uma carteira</returns>
-        /// <exception cref="NotImplementedException"></exception>
         [HttpGet]
         [Route("{userId}")]
         public IActionResult GetOne(int userId)
